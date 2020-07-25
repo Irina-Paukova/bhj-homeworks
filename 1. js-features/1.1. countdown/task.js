@@ -1,6 +1,6 @@
 'use strict'
 
-const isTimer = document.getElementById(timer);
+const timer = document.getElementById("timer");
 
 function getCountdown() {
 	timer.textContent = timer.textContent - 1;
