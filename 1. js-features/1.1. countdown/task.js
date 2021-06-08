@@ -3,11 +3,14 @@
 const timer = document.getElementById("timer");
 
 function getCountdown() {
-	timer.textContent = timer.textContent - 1;
+	let count = timer.textContent.substr(6, 8) ? timer.textContent.substr(6, 8) : timer.textContent;
 
-	if (timer.textContent <= 0) {
+	timer.textContent = new Date(0, 0, 0, 0, 0, -- count).toTimeString().substr(0, 8);
+
+	if (count <= 0) {
 		clearInterval(countdownId);
 		alert('Вы победили в конкурсе!');
+		location = "http://www.mozilla.org";
 	}
 } 
 
