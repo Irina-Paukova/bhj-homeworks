@@ -1,53 +1,31 @@
 "use strict";
 
-let counter = 0;
-
-document.querySelector(".slider__arrow_prev").onclick = function() {
-	let sliderItem = document.querySelectorAll(".slider__item");
-
-	for (let i = 0; i < sliderItem.length; i++) {
-		sliderItem[i].classList.remove("slider__item_active");
-		sliderItem[counter].classList.add("slider__item_active");
+function searchActive(element, index, array) {
+	if (element.classList.contains("slider__item_active")) {
+		return element;
 	};
-
-	sliderItem[counter].classList.add("slider__item_active");
-
-
-	if (counter === 0) {
-		counter = 4;
-		
-		for (let i = 0; i < sliderItem.length; i++) {
-			sliderItem[i].classList.remove("slider__item_active");
-			sliderItem[counter].classList.add("slider__item_active");
-		};
-	};
-
-	counter--;
-	console.log(counter);
-
 };
 
+let sliderItems = Array.from(document.querySelectorAll(".slider__item")); //массив всех слайдов
+
 document.querySelector(".slider__arrow_next").onclick = function() {
-	let sliderItem = document.querySelectorAll(".slider__item");
+	let activeIndex = sliderItems.findIndex(searchActive);
 
-	for (let i = 0; i < sliderItem.length; i++) {
-		sliderItem[i].classList.remove("slider__item_active");
-		sliderItem[counter].classList.add("slider__item_active");
+	if (activeIndex === sliderItems.length - 1) {
+		sliderItems[0].classList.add("slider__item_active");
 	};
 
-	counter++;
+	sliderItems[activeIndex].classList.remove("slider__item_active");
+	sliderItems[activeIndex].nextElementSibling.classList.add("slider__item_active");
+};
 
-	if (counter === 5) {
-		counter = 0;
-		
-		for (let i = 0; i < sliderItem.length; i++) {
-			sliderItem[i].classList.remove("slider__item_active");
-			sliderItem[counter].classList.add("slider__item_active");
-		};
+document.querySelector(".slider__arrow_prev").onclick = function() {
+	let activeIndex = sliderItems.findIndex(searchActive);
+
+	if (activeIndex === 0) {
+		sliderItems[sliderItems.length - 1].classList.add("slider__item_active");
 	};
 
-	sliderItem[counter].classList.add("slider__item_active");
-	console.log(counter);
-
-	
+	sliderItems[activeIndex].classList.remove("slider__item_active");
+	sliderItems[activeIndex].previousElementSibling.classList.add("slider__item_active");
 };
