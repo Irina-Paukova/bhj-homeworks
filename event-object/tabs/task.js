@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 let tabs = Array.from(document.querySelectorAll(".tab"));
 let content = Array.from(document.querySelectorAll(".tab__content"));
