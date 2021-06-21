@@ -22,4 +22,7 @@ function timerId() {
 	rotatorCases[activIndex + 1].classList.add("rotator__case_active");
 };
 
+let isStudent = confirm("Вы студент?");
+alert(isStudent);
+
 setInterval(timerId, 1000);
