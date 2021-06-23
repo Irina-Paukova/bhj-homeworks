@@ -39,6 +39,7 @@ document.addEventListener("keydown", event => {
 			    </div>
 			  </div>
 			`;
+			input.value = "";
 		};
 	};
 });
