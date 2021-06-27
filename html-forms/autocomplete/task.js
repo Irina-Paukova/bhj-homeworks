@@ -72,7 +72,7 @@ class Autocomplete {
     let suitable = [];
 
     for (let i = 0; i < options.length; i++) {
-      if (options[i].innerHTML.toLowerCase().includes(text)) {
+      if (options[i].innerHTML.includes(text)) {
         suitable.push({
           text: options[i].innerHTML,
           value: options[i].value
