@@ -26,6 +26,8 @@ function addItem() {
 
 		input.value = "";
 	};
+
+	event.preventDefault();
 };
 
 document.addEventListener("keydown", event => {
