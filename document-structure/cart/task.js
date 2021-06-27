@@ -10,8 +10,9 @@ countButtons.forEach(elem => {
         if (e.target.classList.contains("product__quantity-control_inc")) {
             e.target.closest(".product").querySelector(".product__quantity-value").textContent = String(Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent) + 1);
         } else {
-            e.target.closest(".product").querySelector(".product__quantity-value").textContent = String(Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent) - 1);
-
+            if (e.target.closest(".product").querySelector(".product__quantity-value").textContent > 1) {
+                e.target.closest(".product").querySelector(".product__quantity-value").textContent = String(Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent) - 1);
+            }
         }
         quantityCheck();
     });
@@ -21,9 +22,9 @@ addToCartBtns.forEach(elem => {
     elem.addEventListener('click', e => {
         let article = e.target.closest(".product").getAttribute("data-id");
         let cartItems = Array.from(document.querySelectorAll(".cart__product"));
+
         if (cartItems.some(element => element.getAttribute("data-id") === article)) {
             cartContent.querySelector(`.cart__product[data-id="${article}"`).querySelector(".cart__product-count").textContent = Number(cartContent.querySelector(`.cart__product[data-id="${article}"`).querySelector(".cart__product-count").textContent) + Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent);
-
         } else {
             let newProduct = document.createElement('div');
             let productImg = document.createElement('img');
@@ -38,8 +39,7 @@ addToCartBtns.forEach(elem => {
             cartContent.append(newProduct);
             newProduct.append(productImg);
             newProduct.append(productCount);
-        }
-
+        };
     });
 });
 
@@ -49,9 +49,8 @@ function quantityCheck() {
             elem.closest(".product").querySelector(".product__quantity-control_dec").classList.add("visability-hidden");
         } else {
             elem.closest(".product").querySelector(".product__quantity-control_dec").classList.remove("visability-hidden");
-
         }
     });
-}
+};
 
 quantityCheck();
